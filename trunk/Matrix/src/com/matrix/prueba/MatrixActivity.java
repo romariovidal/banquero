@@ -5,11 +5,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 import android.app.Activity;
+import android.content.Context;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.InputType;
 import android.util.Log;
 import android.view.View;
+import android.view.WindowManager;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup.LayoutParams;
 import android.view.inputmethod.InputMethodManager;
@@ -58,6 +60,8 @@ public class MatrixActivity extends Activity {
         
        // imm = (InputMethodManager)getSystemService(this.INPUT_METHOD_SERVICE);
 
+        //getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);	
+        
         boton= (Button) findViewById(R.id.button1);
        
         boton.setOnClickListener(new OnClickListener() {
@@ -87,7 +91,8 @@ public class MatrixActivity extends Activity {
     procesos = (EditText) findViewById(R.id.editText1);
     
     //imm.hideSoftInputFromWindow(procesos.getWindowToken(), 0);
-    
+    InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+    imm.hideSoftInputFromWindow(procesos.getApplicationWindowToken(), 0);
     /*Integer*/ filas = Integer.valueOf(procesos.getText().toString());
     
     recursos = (EditText) findViewById(R.id.editText2);
@@ -233,7 +238,7 @@ public class MatrixActivity extends Activity {
             	
         }
         
-        int suma = maximos[2][2]+asignados[2][2];
+        int suma = maximos[1][0]+asignados[1][0];
         System.out.println("resultado suma"+suma);
         
         Log.e("matriz dos","datos matriz maximos");
@@ -251,6 +256,26 @@ public class MatrixActivity extends Activity {
             System.out.println(stringsrdisp[i]); 
         }
     	
+        
+        for (int i = 0; i < filas; i++) {
+            
+            for (int j = 0; j < columnasmatriz; j++) {
+            	
+            	//String elemento=columnas.get(indice_mat_asignados).getText().toString();
+            	
+            	//asignados[i][j]= Integer.valueOf(elemento);
+            	
+            	if((asignados[i][j]+Integer.valueOf(recdisp.get(j).getText().toString())> maximos[i][j]  ))
+            			{
+            		
+            		System.out.println(asignados[i][j]+Integer.valueOf(recdisp.get(j).getText().toString())); 
+            		System.out.println("Mayor"); 
+            	}
+                
+            }
+            	
+        }//fin operaciones
+        
     	
     }
     

@@ -33,9 +33,12 @@
             android:id="@+id/editText1"
             android:layout_width="99dp"
             android:layout_height="wrap_content"
-            android:inputType="number"
+            android:inputType="phone"
             android:lines="1"
-            android:width="300dip" >
+            android:width="300dip"
+            
+  			android:digits="1234567890"
+             >
 
             <requestFocus />
         </EditText>
