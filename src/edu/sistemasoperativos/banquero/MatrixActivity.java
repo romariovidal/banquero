@@ -20,6 +20,10 @@ import android.widget.TableLayout;
 import android.widget.TableRow;
 
 public class MatrixActivity extends Activity {
+	
+	private Cajero cajero = new Cajero();
+	private ArrayList<Cliente> clientes = new ArrayList<Cliente>();
+	
     /** Called when the activity is first created. */
 	Button boton = null;
 	Button asignar = null;
@@ -212,10 +216,10 @@ public class MatrixActivity extends Activity {
         Log.e("matriz uno","datos matriz asignados entrados");
         
         //asignar valores a la matriz de asignados
-        for (int i = 0; i < filas; i++) {
-            
-            for (int j = 0; j < columnasmatriz; j++) {
-            	
+
+        for (int j = 0; j < columnasmatriz; j++) {
+    		ArrayList<Integer> recursosNecesarios = new ArrayList<Integer>();
+        	for (int i = 0; i < filas; i++) {
             	//String elemento=columnas.get(indice_mat_asignados).getText().toString();
             	
             	//asignados[i][j]= Integer.valueOf(elemento);
@@ -227,13 +231,16 @@ public class MatrixActivity extends Activity {
             	
             	Log.e("matriz uno","datos matriz de asignados entrados");
             	System.out.println(asignados[i][j]);
+            	recursosNecesarios.set(i, asignados[i][j]);
             	
             	
             	 Log.e("matriz uno","datos matriz de maximos entrados");
             	System.out.println(maximos[i][j]);
                 
             }
-            	
+            	//Aqui se tienen los valores necesarios del proceso j
+        	Cliente cliente = new Cliente(cajero,recursosNecesarios,j);
+        	agregarCliente(cliente);
         }
         
         int suma = maximos[1][0]+asignados[1][0];
@@ -274,7 +281,14 @@ public class MatrixActivity extends Activity {
             	
         }//fin operaciones
         
-    	
+    	for(Cliente c : clientes) {
+    		c.start();
+    	}
     }
+
+
+	private void agregarCliente(Cliente cliente) {
+		this.clientes.add(cliente);
+	}
     
 }
