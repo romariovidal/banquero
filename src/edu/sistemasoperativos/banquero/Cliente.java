@@ -24,8 +24,8 @@ public class Cliente extends Thread {
 
 	private void inicializarRecursosObtenidos() {
 		int recurso = 0;
-		for(int cantidadRecurso : recursosNecesarios) {
-			recursosObtenidos.set(recurso, 0);
+		for(int i=0; i < recursosObtenidos.size(); i++) {
+			recursosObtenidos.add(recurso, 0);
 		}
 	}
 
@@ -64,7 +64,7 @@ public class Cliente extends Thread {
 		
 		int recurso = 0;
 		for(int cantidadRecurso : recursosASolicitar) {
-			recursosObtenidos.set(recurso, recursosObtenidos.get(recurso) + cantidadRecurso);
+			recursosObtenidos.add(recurso, recursosObtenidos.get(recurso) + cantidadRecurso);
 			recurso++;
 		}
 	}
@@ -75,10 +75,10 @@ public class Cliente extends Thread {
 		int recurso = 0;
 		for(int cantidadRecurso : recursosObtenidos) {
 			if( (recursosNecesarios.get(recurso) - cantidadRecurso) > 0) {
-				recursos.set(recurso, 1);
+				recursos.add(recurso, 1);
 			}
 			else {
-				recursos.set(recurso, 0);
+				recursos.add(recurso, 0);
 			}
 		}
 		return null;
