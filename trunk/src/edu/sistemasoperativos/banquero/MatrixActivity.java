@@ -3,17 +3,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 import android.app.Activity;
-import android.content.Context;
 import android.graphics.Color;
 import android.os.Bundle;
-import android.text.Editable;
 import android.text.InputType;
 import android.util.Log;
 import android.view.View;
-import android.view.WindowManager;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup.LayoutParams;
-import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
@@ -56,12 +52,12 @@ public class MatrixActivity extends Activity {
     boolean banderamayor=false;										//bandera para verificar que la suma ha sido mayor o igual
     boolean banderaexe=true;										//bandera para determinar si hay datos a operar
     
-    int procesoenejecucion;											//variable para especificar la fila actual en ejecución
+    int procesoenejecucion;											//variable para especificar la fila actual en ejecuciï¿½n
 
     Integer filas;													//numero de filas
     Integer columnasmatriz;											//numero de columnas
     
-    Toast procesoejec;												//Toast para desplegar el proceso en ejecución
+    Toast procesoejec;												//Toast para desplegar el proceso en ejecuciï¿½n
     
     TableLayout table=null;											//Layout para la interfaz de matriz de recursos asignados
     TableRow row=null ;												//elemento fila para la interfaz de rcursos asignados
@@ -80,7 +76,7 @@ public class MatrixActivity extends Activity {
     	
         
         boton= (Button) findViewById(R.id.button1);					//boton para generar las matrices
-        asignar = (Button) findViewById(R.id.button2);				//boton para asignar valores ingresados a las matrices con las que operará
+        asignar = (Button) findViewById(R.id.button2);				//boton para asignar valores ingresados a las matrices con las que operarï¿½
         //asignar.setEnabled(false);
         //asignar.setBackgroundColor(Color.TRANSPARENT);
         asignar.setVisibility(View.INVISIBLE);						//no mostrar boton hasta que se creen las matrices
@@ -155,7 +151,7 @@ public class MatrixActivity extends Activity {
     table = new TableLayout(this);
     // se puede definir tambien un TableLayout table = (TableLayout) findViewById(R.id.tableLayout1);
     
-    //iniciar recorrido para la creación de la matriz de recursos asignados
+    //iniciar recorrido para la creaciï¿½n de la matriz de recursos asignados
     for (int i = 0; i < filas; i++) {
         row = new TableRow(this);										//creacion de una nueva fila
         row.setId(indice); 												//asignar indice a la fila
@@ -196,10 +192,10 @@ public class MatrixActivity extends Activity {
     
     TableLayout mrecursosn = new TableLayout(this);						//Tabla para la matriz de recursos maximos
     
-    //Creación de la matriz de recursos maximos
+    //Creaciï¿½n de la matriz de recursos maximos
     for (int i = 0; i < filas; i++) {
     	
-        TableRow row = new TableRow(this);								//creación de fila
+        TableRow row = new TableRow(this);								//creaciï¿½n de fila
         row.setId(indicematrizzdos); 									//asignacion de id
         TextView nombre= new TextView(this);							//creacion de etiqueta de fila
         nombre.setText(String.valueOf(indicematrizzdos));				//asignar valor de etiqueta de filas
@@ -224,7 +220,7 @@ public class MatrixActivity extends Activity {
     	LinearLayout ltablarn = (LinearLayout) findViewById(R.id.linearLayout7);
     	ltablarn.addView(mrecursosn);
     	
-    	//boton.setEnabled(false);										//deshabiliar botón de generación de matrices para operar solo con los datos de recursos y procesos inicialmente ingresados
+    	//boton.setEnabled(false);										//deshabiliar botï¿½n de generaciï¿½n de matrices para operar solo con los datos de recursos y procesos inicialmente ingresados
     	boton.setVisibility(View.INVISIBLE);							//ocultar boton
     	
     }
@@ -232,7 +228,7 @@ public class MatrixActivity extends Activity {
     //pasar valores a las matrices respectivas para operar con ellos
     public void asignarvalores(){
     	
-    	banderaexe=true;												//reasignación de valor para la bandera que controla la existencia de recursos
+    	banderaexe=true;												//reasignaciï¿½n de valor para la bandera que controla la existencia de recursos
     	
     	//verificar si hay datos en las celdas del vector de recursos disponibles 
     	for(int i=0; i < recdisp.size(); i++){
@@ -246,7 +242,7 @@ public class MatrixActivity extends Activity {
          		 break;}
 
          }
-    	//en caso de que no haya algún dato en el vector no se puede iniciar las operaciones
+    	//en caso de que no haya algï¿½n dato en el vector no se puede iniciar las operaciones
     	if(banderaexe==false){
     		
     		System.out.println("No hay datos");							//punto de control -borrar-
@@ -259,7 +255,7 @@ public class MatrixActivity extends Activity {
         		
         	procesoejec.show();											//despliegue de mensaje	
     	}
-    	//en caso de que el valor de la bandera de ejecución sea cierto, esto indica que se pueden iniciar las operaciones
+    	//en caso de que el valor de la bandera de ejecuciï¿½n sea cierto, esto indica que se pueden iniciar las operaciones
     	else{ 
     	for (int a=0;a<filaschequeadas.size();a++){
     		
@@ -269,7 +265,7 @@ public class MatrixActivity extends Activity {
     	
     	//creacion de matrices y vector dada la dimension ingresada. Estas que contendran los datos a operar
     	asignados = new int[filas][columnasmatriz];						//Matriz de recursos asignados			
-    	maximos = new int[filas][columnasmatriz];						//Matriz de recursos máximos requeridos
+    	maximos = new int[filas][columnasmatriz];						//Matriz de recursos mï¿½ximos requeridos
     	disponibles = new int[columnasmatriz];							//Vector de recursos disponibles
     	
     	filachequeada=filas;											//iniciar el valor de filas a chequear
@@ -332,13 +328,13 @@ public class MatrixActivity extends Activity {
             	System.out.println(asignados[i][j]);						//Punto de cotrol. Mostrar en consola datos de la matriz de recursos asignados
        
             	Log.e("matriz uno","datos matriz de maximos entrados");		//punto de cotrol-borrar-
-            	System.out.println(maximos[i][j]);							//Punto de cotrol. Mostrar en consola datos de la matriz de máximos requeridos
+            	System.out.println(maximos[i][j]);							//Punto de cotrol. Mostrar en consola datos de la matriz de mï¿½ximos requeridos
                 
             }
             	
         }
         
-        //reiniciar valores de indices en caso de una nueva ejecución
+        //reiniciar valores de indices en caso de una nueva ejecuciï¿½n
         indice=0;
     	indice_mat_asignados=0;
     
@@ -376,7 +372,7 @@ public class MatrixActivity extends Activity {
         
         for (int i = 0; i < filas; i++) {
             
-        	//verificar si la fila está marcada como ejecutada
+        	//verificar si la fila estï¿½ marcada como ejecutada
         	if((asignados[i][0])== -1){
         		continue;												//continuar el recorrido de filas
         	}
@@ -384,7 +380,7 @@ public class MatrixActivity extends Activity {
 
             for (int j = 0; j < columnasmatriz; j++) {
 
-            	//verficar si la suma es mayor o igual al máximo de recursos necesarios
+            	//verficar si la suma es mayor o igual al mï¿½ximo de recursos necesarios
             	if((asignados[i][j]+disponibles[j]>= maximos[i][j]))
             		{
             		
@@ -411,10 +407,10 @@ public class MatrixActivity extends Activity {
             	}
             }
             //verificar si luego de las comparaciones en cada columna de una fila el resultado fue maor 
-            //y no se alteró la bandera, por tanto el proceso se puede ejecutar
+            //y no se alterï¿½ la bandera, por tanto el proceso se puede ejecutar
             if(banderamayor==true){
             	
-            	String procesoejecutado= "Proceso En ejecución P"+procesoenejecucion;      //Crear string de mensaje que indica la fila o proceso con resultados satisfactorios
+            	String procesoejecutado= "Proceso En ejecuciï¿½n P"+procesoenejecucion;      //Crear string de mensaje que indica la fila o proceso con resultados satisfactorios
             	
             	//Configurar mensaje que indica el proceso que se ejecuta
             	procesoejec=Toast.makeText(this,procesoejecutado, Toast.LENGTH_SHORT);
@@ -425,7 +421,7 @@ public class MatrixActivity extends Activity {
             	
             	
             	
-            	System.out.println("proceso en ejecucion "+procesoenejecucion); 			//punto de control. Verificar en consola fila en ejecución
+            	System.out.println("proceso en ejecucion "+procesoenejecucion); 			//punto de control. Verificar en consola fila en ejecuciï¿½n
             	
             	asignados[procesoenejecucion][0]= -1;										//marcar fila o proceso como ejecutado
             	
@@ -441,11 +437,11 @@ public class MatrixActivity extends Activity {
             			filaschequeadas.get(a).setBackgroundColor(Color.argb(150, 0, 255, 0));
             			
             			//System.out.println("paso a eliminar fila");						//punto de control -borrar-
-            			//table.removeView(filaschequeadas.get(a));							//segunda opción:remover filas que hacen referencia a procesos ejecutados
+            			//table.removeView(filaschequeadas.get(a));							//segunda opciï¿½n:remover filas que hacen referencia a procesos ejecutados
             			
             			/*Asignar valores cero en la interfaz a las filas de procesos ejecutados.
             			Esto para indicar que se usaron y se devolvieron los recursos asignados.
-            			Internamente la fila está marcada en la matríz como ejecutada por lo que no se toca*/
+            			Internamente la fila estï¿½ marcada en la matrï¿½z como ejecutada por lo que no se toca*/
             			
             			for (int s=1;s<(filaschequeadas.get(a).getChildCount());s++){
             			EditText editada = (EditText) filaschequeadas.get(a).getChildAt(s);	//obtener hijos o celdas en la fila
@@ -475,7 +471,7 @@ public class MatrixActivity extends Activity {
         filachequeada--;														//decrementar filas chequeadas 
     }//fin chequeo de filas
         
-    //verificar si hubo un resultado que no fue mayor al maximo, por lo que la bandera no se modificó. Esto indica un estado no seguro
+    //verificar si hubo un resultado que no fue mayor al maximo, por lo que la bandera no se modificï¿½. Esto indica un estado no seguro
     if(banderamayor==false){
         	
     		//configurar y desplegar mensaje que indica que se ha llegado a un estado no seguro
@@ -484,7 +480,7 @@ public class MatrixActivity extends Activity {
         	procesoejec.show();
     }    
         
-   }//cierre del else en caso de que hayan elementos o procesos en ejecución   
+   }//cierre del else en caso de que hayan elementos o procesos en ejecuciï¿½n   
         
    
    }//fin metodo

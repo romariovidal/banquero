@@ -35,7 +35,8 @@
             android:layout_alignParentLeft="true"
             android:layout_alignRight="@+id/textViewCantidadProcesos"
             android:layout_below="@+id/textViewCantidadProcesos"
-            android:inputType="number">
+            android:inputType="number" >
+
             <requestFocus />
         </EditText>
 
@@ -74,154 +75,270 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent" >
 
-        <RelativeLayout
-            android:id="@+id/relativeLayoutIngreso"
+        <LinearLayout
+            android:id="@+id/LinearLayoutModoIngreso"
             android:layout_width="match_parent"
-            android:layout_height="match_parent" >
+            android:layout_height="match_parent"
+            android:orientation="vertical" >
 
-            <TextView
-                android:id="@+id/textViewSeleccionProceso"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentLeft="true"
-                android:layout_marginLeft="66dp"
-                android:text="@string/seleccion_proceso"
-                android:textAppearance="?android:attr/textAppearanceLarge" />
+            <TableLayout
+                android:id="@+id/tableLayoutModoIngreso"
+                android:layout_width="match_parent"
+                android:layout_height="448dp"
+                android:layout_weight="0.82" >
 
-            <TextView
-                android:id="@+id/textViewRecursosDisponibles"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="160dp"
-                android:layout_toRightOf="@+id/textViewSeleccionProceso"
-                android:text="@string/ingreso_cantidad_recursos_disponibles"
-                android:textAppearance="?android:attr/textAppearanceLarge" />
+                <TableRow
+                    android:id="@+id/tableRowTituloIngresoRecursos"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" >
 
-            <TextView
-                android:id="@+id/textViewCantidadRecursos"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentTop="true"
-                android:layout_marginLeft="88dp"
-                android:layout_toRightOf="@+id/textViewRecursosDisponibles"
-                android:text="@string/cantidad_recursos"
-                android:textAppearance="?android:attr/textAppearanceLarge" />
+                    <TextView
+                        android:id="@+id/textViewTipoRecurso"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/tipo_recurso"
+                        android:textAppearance="?android:attr/textAppearanceLarge" />
 
-            <Spinner
-                android:id="@+id/spinnerProcesos"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignLeft="@+id/textViewSeleccionProceso"
-                android:layout_below="@+id/textViewSeleccionProceso"
-                android:layout_marginTop="45dp"
-                android:layout_toLeftOf="@+id/textViewRecursosDisponibles"
-                android:prompt="@string/seleccion_proceso" />
+                    <TextView
+                        android:id="@+id/textViewSeleccionProceso"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/seleccion_proceso"
+                        android:textAppearance="?android:attr/textAppearanceLarge" />
 
-            <Spinner
-                android:id="@+id/spinnerRecursos"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignBaseline="@+id/spinnerProcesos"
-                android:layout_alignBottom="@+id/spinnerProcesos"
-                android:layout_alignLeft="@+id/textViewRecursosDisponibles"
-                android:layout_toLeftOf="@+id/textViewCantidadRecursos"
-                android:prompt="@string/seleccione_recursos" />
+                    <TextView
+                        android:id="@+id/textViewSeleccionRecursoDisponible"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/seleccione_recursos"
+                        android:textAppearance="?android:attr/textAppearanceLarge" />
 
-            <EditText
-                android:id="@+id/editTextCantidadRecursos"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignLeft="@+id/textViewCantidadRecursos"
-                android:layout_alignRight="@+id/textViewCantidadRecursos"
-                android:layout_alignTop="@+id/spinnerRecursos"
-                android:inputType="number" />
+                    <TextView
+                        android:id="@+id/textViewRecursosDisponibles"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/cantidad_recursos"
+                        android:textAppearance="?android:attr/textAppearanceLarge" />
+                </TableRow>
+
+                <TableRow
+                    android:id="@+id/tableRowBotonesIngresoRecursos"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" >
+
+                    <RadioGroup
+                        android:id="@+id/radioGroupTipoRecurso"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" >
+
+                        <RadioButton
+                            android:id="@+id/radioButtonNecesario"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:checked="true"
+                            android:text="@string/recurso_maximo" />
+
+                        <RadioButton
+                            android:id="@+id/radioButtonAsignado"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/recurso_asignado" />
+                    </RadioGroup>
+
+                    <Spinner
+                        android:id="@+id/spinnerProcesos"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:prompt="@string/seleccion_proceso" />
+
+                    <Spinner
+                        android:id="@+id/spinnerRecursos"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:prompt="@string/seleccione_recursos" />
+
+                    <EditText
+                        android:id="@+id/editTextCantidadRecursosIngreso"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:inputType="number" />
+
+                    <Button
+                        android:id="@+id/buttonSetearRecursoMaximo"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:onClick="onClickSetearRecursoMaximo"
+                        android:text="@string/set_recurso_maximo_proceso" />
+                </TableRow>
+
+                <TableRow
+                    android:id="@+id/tableRowTituloIngresoRecursosDisponibles"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" >
+
+                    <TextView
+                        android:id="@+id/TextViewCantidadRecursos"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/cantidad_recursos"
+                        android:textAppearance="?android:attr/textAppearanceLarge" />
+
+                    <TextView
+                        android:id="@+id/textViewIngresoCantidadRecursosDisponibles"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/ingreso_cantidad_recursos_disponibles"
+                        android:textAppearance="?android:attr/textAppearanceLarge" />
+                </TableRow>
+
+                <TableRow
+                    android:id="@+id/tableRowBotonesIngresoRecursosDisponibles"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" >
+
+                    <Spinner
+                        android:id="@+id/spinnerSeleccionRecursosDisponibles"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:prompt="@string/seleccione_recursos" />
+
+                    <EditText
+                        android:id="@+id/editTextIngresoRecursosDisponibles"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:inputType="number" />
+
+                    <Button
+                        android:id="@+id/buttonSetearRecursosDisponibles"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:onClick="onClickSetearRecursosDisponibles"
+                        android:text="@string/setear_recurso_disponible" />
+                </TableRow>
+            </TableLayout>
 
             <Button
-                android:id="@+id/buttonSetearRecursoMaximo"
+                android:id="@+id/buttonCambioModoAIngresoMatrices"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignLeft="@+id/spinnerRecursos"
-                android:layout_marginTop="127dp"
-                android:onClick="onClickSetearRecursoMaximo"
-                android:text="@string/set_recurso_maximo_proceso" />
+                android:layout_gravity="center"
+                android:onClick="onclickVerMatrices"
+                android:text="@string/cambio_modo_a_ingreso_matrices" />
 
-            <TextView
-                android:id="@+id/textViewIngresoCantidadRecursosDisponibles"
-                android:layout_width="wrap_content"
+        </LinearLayout>
+        
+        <LinearLayout
+            android:id="@+id/LinearLayoutModoTabla"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical" >
+
+            <LinearLayout
+                android:id="@+id/linearLayoutModoTabla"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_alignLeft="@+id/buttonSetearRecursoMaximo"
-                android:layout_below="@+id/editTextCantidadRecursos"
-                android:layout_marginTop="92dp"
-                android:text="@string/ingreso_cantidad_recursos_disponibles"
-                android:textAppearance="?android:attr/textAppearanceLarge" />
+                android:layout_weight="1.02"
+                android:baselineAligned="false"
+                android:orientation="vertical" >
+
+                <LinearLayout
+                    android:id="@+id/LinearLayoutTitulos"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical" >
+
+                    <TextView
+                        android:id="@+id/textViewModoTablas"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:text="@string/modo_tablas"
+                        android:textAppearance="?android:attr/textAppearanceLarge" />
+
+                    <LinearLayout
+                        android:id="@+id/linearLayoutTitulosTablas"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" >
+
+                        <TextView
+                            android:id="@+id/textViewTituloMatrizRecursosMaximos"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="0.50"
+                            android:text="@string/matriz_recursos_maximos"
+                            android:textAppearance="?android:attr/textAppearanceLarge" />
+
+                        <TextView
+                            android:id="@+id/textViewTitulomatrizRecursosDisponibles"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="0.50"
+                            android:text="@string/matriz_recursos_disponibles"
+                            android:textAppearance="?android:attr/textAppearanceLarge" />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/linearLayoutTablas"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="10.05"
+                    android:gravity="fill_horizontal"
+                    android:orientation="horizontal" >
+
+                    <TableLayout
+                        android:id="@+id/tableLayoutTablaMaximo"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="left"
+                        android:layout_weight="0.50" >
+                    </TableLayout>
+
+                    <TableLayout
+                        android:id="@+id/tableLayoutAsignado"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="right"
+                        android:layout_weight="0.50" >
+                    </TableLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/linearLayoutRecursosDisponibles"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.63" >
+
+                    <TextView
+                        android:id="@+id/textViewTituloRecursosDisponibles"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/recursos_disponibles"
+                        android:textAppearance="?android:attr/textAppearanceLarge" />
+
+                    <TableLayout
+                        android:id="@+id/tableLayoutVectorRecursosDisponibles"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent" >
+
+                        <TableRow
+                            android:id="@+id/tableRowVectorRecursosDisponibles"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" >
+                        </TableRow>
+                    </TableLayout>
+                </LinearLayout>
+            </LinearLayout>
 
             <Button
-                android:id="@+id/buttonSetearRecursosDisponibles"
+                android:id="@+id/buttonCambioAModoIngresoDatos"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignLeft="@+id/buttonSetearRecursoMaximo"
-                android:layout_below="@+id/textViewIngresoCantidadRecursosDisponibles"
-                android:layout_marginLeft="30dp"
-                android:layout_marginTop="83dp"
-                android:onClick="onClickSetearRecursosDisponibles"
-                android:text="@string/setear_recurso_disponible" />
-
-            <EditText
-                android:id="@+id/editTextIngresoRecursosDisponibles"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignLeft="@+id/textViewIngresoCantidadRecursosDisponibles"
-                android:layout_alignRight="@+id/textViewIngresoCantidadRecursosDisponibles"
-                android:layout_below="@+id/textViewIngresoCantidadRecursosDisponibles"
-                android:inputType="number" />
-
-            <RadioGroup
-                android:id="@+id/radioGroupTipoRecurso"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignBottom="@+id/buttonSetearRecursoMaximo"
-                android:layout_alignRight="@+id/spinnerProcesos" >
-
-                <RadioButton
-                    android:id="@+id/radioButtonNecesario"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:checked="true"
-                    android:text="@string/recurso_maximo" />
-
-                <RadioButton
-                    android:id="@+id/radioButtonAsignado"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/recurso_asignado" />
-            </RadioGroup>
-
-            <Spinner
-                android:id="@+id/spinnerSeleccionRecursosDisponibles"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignBaseline="@+id/editTextIngresoRecursosDisponibles"
-                android:layout_alignBottom="@+id/editTextIngresoRecursosDisponibles"
-                android:layout_alignLeft="@+id/spinnerProcesos"
-                android:layout_alignRight="@+id/radioGroupTipoRecurso"
-                android:prompt="@string/seleccione_recursos" />
-
-            <TextView
-                android:id="@+id/textViewSeleccionRecursoDisponible"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_above="@+id/editTextIngresoRecursosDisponibles"
-                android:layout_toLeftOf="@+id/textViewRecursosDisponibles"
-                android:text="@string/seleccione_recursos"
-                android:textAppearance="?android:attr/textAppearanceLarge" />
-
-        </RelativeLayout>
-
-        <RelativeLayout
-            android:id="@+id/relativeLayoutTabla"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" >
-        </RelativeLayout>
+                android:layout_marginBottom="44dp"
+                android:layout_marginLeft="558dp"
+                android:onClick="onClickVerIngresoDatos"
+                android:text="@string/cambio_a_modo_ingreso_datos" />
+        </LinearLayout>
 
     </ViewSwitcher>
 

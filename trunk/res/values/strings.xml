@@ -21,5 +21,13 @@
     <string name="finalizar_ingreso_datos">Finalizar Ingreso Datos</string>
     <string name="ingreso_cantidad_recursos_disponibles">Ingreso Cantidad Recursos Disponibles</string>
     <string name="setear_recurso_disponible">Setear Recurso disponible</string>
+    <string name="ver_matrices">Ver Matrices</string>
+    <string name="modo_tablas">Modo Tablas</string>
+    <string name="matriz_recursos_maximos">Matriz de Recursos Maximos</string>
+    <string name="matriz_recursos_disponibles">Matriz de Recursos Disponibles</string>
+    <string name="recursos_disponibles">Recursos Disponibles</string>
+    <string name="cambio_a_modo_ingreso_datos">Cambio a Modo Ingreso de Datos</string>
+    <string name="cambio_modo_a_ingreso_matrices">Cambio Modo a Ingreso Matrices</string>
+    <string name="tipo_recurso">Tipo de Recurso</string>
 
 </resources>
