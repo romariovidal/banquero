@@ -5,7 +5,10 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.InputType;
+import android.view.MotionEvent;
 import android.view.View;
+import android.view.View.OnClickListener;
+import android.view.View.OnTouchListener;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
@@ -13,6 +16,7 @@ import android.widget.RadioButton;
 import android.widget.Spinner;
 import android.widget.TableLayout;
 import android.widget.TableRow;
+import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.ViewSwitcher;
 
@@ -166,18 +170,18 @@ public class IngresoDatosSimulacionActivity extends Activity {
 		
 		TableRow rowVectorRecursosDisponibles = (TableRow) this.findViewById(R.id.tableRowVectorRecursosDisponibles);
 		
-		for(int proceso = 0; proceso < tablaLayoutRecursosMaximos.getChildCount(); proceso++) {
+		for(int proceso = 1; proceso < tablaLayoutRecursosMaximos.getChildCount(); proceso++) {
 			TableRow filaRecursoMaximo = (TableRow) tablaLayoutRecursosMaximos.getChildAt(proceso);
 			TableRow filaRecursoAsignado = (TableRow) tablalayoutRecursosAsignados.getChildAt(proceso);
 			
-			for(int recurso = 0; recurso < filaRecursoMaximo.getChildCount(); recurso++) {
+			for(int recurso = 1; recurso < filaRecursoMaximo.getChildCount(); recurso++) {
 				EditText editTextRecursoMaximo = (EditText) filaRecursoMaximo.getChildAt(recurso);
 				EditText editTextRecursoAsignado = (EditText) filaRecursoAsignado.getChildAt(recurso);
 				int cantidadRecursoNecesario = Integer.parseInt(editTextRecursoMaximo.getText().toString());
 				int cantidadRecursoAsignado = Integer.parseInt(editTextRecursoAsignado.getText().toString());
 				
-				banco.obtenerCliente(proceso).setCantidadRecursoNecesario(recurso, cantidadRecursoNecesario);
-				banco.obtenerCliente(proceso).setCantidadRecursoObtenido(recurso, cantidadRecursoAsignado);
+				banco.obtenerCliente(proceso-1).setCantidadRecursoNecesario(recurso-1, cantidadRecursoNecesario);
+				banco.obtenerCliente(proceso-1).setCantidadRecursoObtenido(recurso-1, cantidadRecursoAsignado);
 			}
 		}
 		
@@ -188,6 +192,16 @@ public class IngresoDatosSimulacionActivity extends Activity {
 		}
 	}
 	
+	private OnTouchListener touchListener = new OnTouchListener() {
+
+		public boolean onTouch(View v, MotionEvent event) {
+			EditText e = (EditText)v;
+			e.setSelection(0, e.getText().length());
+			return false;
+		}
+		
+	};
+	
 	private void actualizarTablasEnBaseAModelo() {
 		TableLayout tablaLayoutRecursosMaximos = (TableLayout) this.findViewById(R.id.tableLayoutTablaMaximo);
 		tablaLayoutRecursosMaximos.removeAllViews();
@@ -196,16 +210,50 @@ public class IngresoDatosSimulacionActivity extends Activity {
 		tablalayoutRecursosAsignados.removeAllViews();
 		
 		TableRow rowVectorRecursosDisponibles = (TableRow) this.findViewById(R.id.tableRowVectorRecursosDisponibles);
+		TableRow rowTituloVectorRecursosDisponibles = (TableRow) this.findViewById(R.id.tableRowTituloVectorRecursosDisponibles);
+		rowTituloVectorRecursosDisponibles.removeAllViews();
 		rowVectorRecursosDisponibles.removeAllViews();
 		
 		//INGRESO DE LA MATRIZ DE MAXIMOS Y ASIGNADOS REQUERIDOS
+		
+
+
+		TableRow rowMaxRequerido = new TableRow(this);
+		TableRow rowAsignado= new TableRow(this);
+		TextView nombreRecursoR = new TextView(this);
+		TextView nombreRecursoA = new TextView(this);
+		nombreRecursoR.setText("P/R");
+		nombreRecursoA.setText("P/R");
+		rowMaxRequerido.addView(nombreRecursoR);
+		rowAsignado.addView(nombreRecursoA);
+		for(int i = 0; i < banco.getCantidadRecursos(); i++) {
+			nombreRecursoR = new TextView(this);
+			nombreRecursoA = new TextView(this);
+			nombreRecursoR.setText("R"+i);
+			nombreRecursoA.setText("R"+i);
+			rowMaxRequerido.addView(nombreRecursoR);
+			rowAsignado.addView(nombreRecursoA);
+		}
+		tablaLayoutRecursosMaximos.addView(rowMaxRequerido);
+		tablalayoutRecursosAsignados.addView(rowAsignado);
+		
 		for(Cliente c : banco.getClientes()) {
-			TableRow rowMaxRequerido = new TableRow(this);
-			TableRow rowAsignado= new TableRow(this);
+			rowMaxRequerido = new TableRow(this);
+			rowAsignado= new TableRow(this);
+			
+			TextView viewTextProcesoR = new TextView(this);
+			TextView viewTextProcesoA = new TextView(this);
+			viewTextProcesoR.setText("P"+c.getIdProceso());
+			viewTextProcesoA.setText("P"+c.getIdProceso());
+			rowMaxRequerido.addView(viewTextProcesoR);
+			rowAsignado.addView(viewTextProcesoA);
+			
 			for(int i = 0; i < banco.getCantidadRecursos(); i++) {
 				EditText textoRecursoMaximo = new EditText(this);
+				textoRecursoMaximo.setOnTouchListener(touchListener);
 				textoRecursoMaximo.setInputType(InputType.TYPE_CLASS_NUMBER);
 				EditText textoRecursoAsignado = new EditText(this);
+				textoRecursoAsignado.setOnTouchListener(touchListener);
 				textoRecursoAsignado.setInputType(InputType.TYPE_CLASS_NUMBER);
 				
 				textoRecursoMaximo.setText(c.getCantidadRecursoNecesario(i)+"");
@@ -218,7 +266,12 @@ public class IngresoDatosSimulacionActivity extends Activity {
 		}
 		
 		for(int i = 0; i < banco.getCantidadRecursos(); i++) {
+			TextView nombreRecurso = new TextView(this);
+			nombreRecurso.setText("R"+i);
+			rowTituloVectorRecursosDisponibles.addView(nombreRecurso);
+			
 			EditText editTextRecurso = new EditText(this);
+			editTextRecurso.setOnTouchListener(touchListener);
 			editTextRecurso.setInputType(InputType.TYPE_CLASS_NUMBER);
 			editTextRecurso.setText(banco.getRecursoDisponible(i)+"");
 			rowVectorRecursosDisponibles.addView(editTextRecurso);
@@ -227,6 +280,9 @@ public class IngresoDatosSimulacionActivity extends Activity {
 	
 	private void actualizarGuiPorCambioModo() {
 		if(modoMatriz) {
+			if(banco == null) {
+				banco = new Banco();
+			}
 			actualizarModeloEnBaseATablas();
 		}
 		else {

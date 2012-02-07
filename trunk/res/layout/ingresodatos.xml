@@ -321,6 +321,11 @@
                         android:layout_width="match_parent"
                         android:layout_height="match_parent" >
 
+                         <TableRow
+                            android:id="@+id/tableRowTituloVectorRecursosDisponibles"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" >
+                        </TableRow>
                         <TableRow
                             android:id="@+id/tableRowVectorRecursosDisponibles"
                             android:layout_width="wrap_content"
