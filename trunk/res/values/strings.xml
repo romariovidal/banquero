@@ -3,5 +3,23 @@
 
     <string name="hello">Hello World, BanqueroActivity!</string>
     <string name="app_name">Banquero</string>
+    <string name="algoritmo_banquero">Algoritmo del Banquero</string>
+    <string name="version">Version 1.0</string>
+    <string name="ingresar_datos">Ingresar Datos Simulacion</string>
+    <string name="comenzar_simulacion">Comenzar Simulacion</string>
+    <string name="acerca_de">Acerca De...</string>
+    <string name="seleccione_una_opcion">Seleccione una Opcion</string>
+    <string name="cantidad_procesos">Cantidad de Procesos</string>
+    <string name="cantidad_recursos">Cantidad de Recursos</string>
+    <string name="aceptar_parametros_generales">Aceptar Parametros Generales</string>
+    <string name="seleccion_proceso">Procesos Disponibles</string>
+    <string name="seleccione_recursos">Recursos Disponibles</string>
+    <string name="set_recurso_maximo_proceso">Guardar Recurso Maximo Proceso</string>
+    <string name="seleccione_proceso">Seleccione un proceso</string>
+    <string name="recurso_maximo">Recurso Maximo Necesario</string>
+    <string name="recurso_asignado">Recurso Asignado</string>
+    <string name="finalizar_ingreso_datos">Finalizar Ingreso Datos</string>
+    <string name="ingreso_cantidad_recursos_disponibles">Ingreso Cantidad Recursos Disponibles</string>
+    <string name="setear_recurso_disponible">Setear Recurso disponible</string>
 
 </resources>

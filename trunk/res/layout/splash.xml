@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/LinearLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:orientation="vertical" >
+
+    <TextView
+        android:id="@+id/textViewTitulo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="0.24"
+        android:gravity="center"
+        android:text="@string/algoritmo_banquero"
+        android:textSize="40dp" />
+
+    <ImageView
+        android:id="@+id/imageViewSplash"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="0.24"
+        android:src="@drawable/splashimage" />
+
+    <TextView
+        android:id="@+id/textViewVersion"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="0.24"
+        android:gravity="center"
+        android:text="@string/version"
+        android:textSize="40dp" />
+
+</LinearLayout>
