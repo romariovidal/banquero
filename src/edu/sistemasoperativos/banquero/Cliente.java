@@ -1,7 +1,6 @@
 package edu.sistemasoperativos.banquero;
 
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.HashMap;
 
 public class Cliente implements Serializable {
@@ -37,10 +36,6 @@ public class Cliente implements Serializable {
 	
 	public void setCantidadRecursoObtenido(int recurso, int cantidad) {
 		recursosObtenidos.put(recurso, cantidad);
-	}
-	
-	public int getCantidadRecursos() {
-		return recursosNecesarios.keySet().size();
 	}
 
 	public int getEstado() {

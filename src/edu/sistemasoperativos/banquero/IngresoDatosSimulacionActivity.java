@@ -4,23 +4,29 @@ import android.R.layout;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.InputType;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.Spinner;
+import android.widget.TableLayout;
+import android.widget.TableRow;
 import android.widget.Toast;
+import android.widget.ViewSwitcher;
 
 public class IngresoDatosSimulacionActivity extends Activity {
 	
 
 	 private ArrayAdapter<String> adapterSpinnerProcesos = null;
 	 private ArrayAdapter<String> adapterSpinnerRecursos = null;
+	 private boolean modoMatriz = false;
 	 
 	 
 	 private Banco banco = new Banco();
 	
+	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.ingresodatos);
@@ -47,7 +53,6 @@ public class IngresoDatosSimulacionActivity extends Activity {
 		banco.limpiar();
 		
 		
-		
 		EditText editTextProcesos = (EditText) this.findViewById(R.id.editTextCantidadProcesos);
 		EditText editTextRecursos = (EditText) this.findViewById(R.id.editTextCantidadRecursos);
 		
@@ -71,12 +76,15 @@ public class IngresoDatosSimulacionActivity extends Activity {
 		for(int recurso = 0; recurso < cantidadRecursos; recurso++) {
 			adapterSpinnerRecursos.add("Recurso N "+recurso);
 		}
+		if(modoMatriz) {
+			actualizarTablasEnBaseAModelo();
+		}
 	}
 	
 	public void onClickSetearRecursoMaximo(View v) {
 		Spinner spinnerProcesos = (Spinner) this.findViewById(R.id.spinnerProcesos);
 		Spinner spinnerRecursos = (Spinner)this.findViewById(R.id.spinnerRecursos);
-		EditText editTextCantidadRecurso = (EditText)this.findViewById(R.id.editTextCantidadRecursos);
+		EditText editTextCantidadRecurso = (EditText)this.findViewById(R.id.editTextCantidadRecursosIngreso);
 		
 		int selectedProceso = spinnerProcesos.getSelectedItemPosition();
 		int selectedRecurso = spinnerRecursos.getSelectedItemPosition();
@@ -89,16 +97,20 @@ public class IngresoDatosSimulacionActivity extends Activity {
 		
 		if(((RadioButton) this.findViewById(R.id.radioButtonNecesario)).isChecked()) {
 			banco.obtenerCliente(selectedProceso).setCantidadRecursoNecesario(selectedRecurso, cantidadRecurso);
-			mensajeUsuario("Recurso Maximo guardado");
+			mensajeUsuario("Recurso Maximo guardado (" +selectedProceso + "," + selectedRecurso+")="+cantidadRecurso );
 		}
 		else {
 			banco.obtenerCliente(selectedProceso).setCantidadRecursoObtenido(selectedRecurso, cantidadRecurso);
-			mensajeUsuario("Recurso Asignado guardado");
+			mensajeUsuario("Recurso Asignado guardado (" +selectedProceso + "," + selectedRecurso+")="+cantidadRecurso );
 		}
 		
 	}
 	
 	public void onClickFinalizarIngresoDatos(View v) {
+		if(modoMatriz) {
+			//actualizamos los datos en el modelo, de acuerdo a lo que el usuario ingreso en las tablas.
+			actualizarModeloEnBaseATablas();
+		}
 		Intent in = new Intent();
 		in.putExtra("banco", banco);
         setResult(1,in);
@@ -121,6 +133,106 @@ public class IngresoDatosSimulacionActivity extends Activity {
 		}
 		banco.setRecursoDisponible(spinnerRecursosDisponibles.getSelectedItemPosition(), Integer.parseInt(sCantidadRecursoDisponible));
 		mensajeUsuario("Recurso Disponible guardado");
+	}
+	
+	public void onclickVerMatrices(View v) {
+		actualizarGuiPorCambioModo();
+		
+		ViewSwitcher viewSwitcherIngreso = (ViewSwitcher) this.findViewById(R.id.viewSwitcherIngreso);
+		viewSwitcherIngreso.showNext();
+	}
+	
+	public void onClickVerIngresoDatos(View v) {
+		actualizarGuiPorCambioModo();
+		
+		ViewSwitcher viewSwitcherIngreso = (ViewSwitcher) this.findViewById(R.id.viewSwitcherIngreso);
+		viewSwitcherIngreso.showPrevious();
+	}
+	
+	@Override
+	public void onBackPressed() {
+		if(this.banco.getCantidadProcesos() > 0 & this.banco.getCantidadRecursos() > 0) {
+			this.onClickFinalizarIngresoDatos(null);
+		}
+		else {
+			mensajeUsuario("Debe Seleccionar cuantos procesos y recursos va a utilizar, presione finalizar cuando haya terminado");
+		}
+	}
+	
+	private void actualizarModeloEnBaseATablas() {
+		TableLayout tablaLayoutRecursosMaximos = (TableLayout) this.findViewById(R.id.tableLayoutTablaMaximo);
+		
+		TableLayout tablalayoutRecursosAsignados = (TableLayout) this.findViewById(R.id.tableLayoutAsignado);
+		
+		TableRow rowVectorRecursosDisponibles = (TableRow) this.findViewById(R.id.tableRowVectorRecursosDisponibles);
+		
+		for(int proceso = 0; proceso < tablaLayoutRecursosMaximos.getChildCount(); proceso++) {
+			TableRow filaRecursoMaximo = (TableRow) tablaLayoutRecursosMaximos.getChildAt(proceso);
+			TableRow filaRecursoAsignado = (TableRow) tablalayoutRecursosAsignados.getChildAt(proceso);
+			
+			for(int recurso = 0; recurso < filaRecursoMaximo.getChildCount(); recurso++) {
+				EditText editTextRecursoMaximo = (EditText) filaRecursoMaximo.getChildAt(recurso);
+				EditText editTextRecursoAsignado = (EditText) filaRecursoAsignado.getChildAt(recurso);
+				int cantidadRecursoNecesario = Integer.parseInt(editTextRecursoMaximo.getText().toString());
+				int cantidadRecursoAsignado = Integer.parseInt(editTextRecursoAsignado.getText().toString());
+				
+				banco.obtenerCliente(proceso).setCantidadRecursoNecesario(recurso, cantidadRecursoNecesario);
+				banco.obtenerCliente(proceso).setCantidadRecursoObtenido(recurso, cantidadRecursoAsignado);
+			}
+		}
+		
+		for(int recurso = 0; recurso < rowVectorRecursosDisponibles.getChildCount(); recurso++) {
+			EditText editTextRecursoDisponible = (EditText) rowVectorRecursosDisponibles.getChildAt(recurso);
+			int cantidadRecursoDisponible = Integer.parseInt(editTextRecursoDisponible.getText().toString());
+			banco.setRecursoDisponible(recurso, cantidadRecursoDisponible);
+		}
+	}
+	
+	private void actualizarTablasEnBaseAModelo() {
+		TableLayout tablaLayoutRecursosMaximos = (TableLayout) this.findViewById(R.id.tableLayoutTablaMaximo);
+		tablaLayoutRecursosMaximos.removeAllViews();
+		
+		TableLayout tablalayoutRecursosAsignados = (TableLayout) this.findViewById(R.id.tableLayoutAsignado);
+		tablalayoutRecursosAsignados.removeAllViews();
+		
+		TableRow rowVectorRecursosDisponibles = (TableRow) this.findViewById(R.id.tableRowVectorRecursosDisponibles);
+		rowVectorRecursosDisponibles.removeAllViews();
+		
+		//INGRESO DE LA MATRIZ DE MAXIMOS Y ASIGNADOS REQUERIDOS
+		for(Cliente c : banco.getClientes()) {
+			TableRow rowMaxRequerido = new TableRow(this);
+			TableRow rowAsignado= new TableRow(this);
+			for(int i = 0; i < banco.getCantidadRecursos(); i++) {
+				EditText textoRecursoMaximo = new EditText(this);
+				textoRecursoMaximo.setInputType(InputType.TYPE_CLASS_NUMBER);
+				EditText textoRecursoAsignado = new EditText(this);
+				textoRecursoAsignado.setInputType(InputType.TYPE_CLASS_NUMBER);
+				
+				textoRecursoMaximo.setText(c.getCantidadRecursoNecesario(i)+"");
+				textoRecursoAsignado.setText(c.getCantidadRecursoObtenido(i)+"");
+				rowMaxRequerido.addView(textoRecursoMaximo);
+				rowAsignado.addView(textoRecursoAsignado);
+			}
+			tablaLayoutRecursosMaximos.addView(rowMaxRequerido);
+			tablalayoutRecursosAsignados.addView(rowAsignado);
+		}
+		
+		for(int i = 0; i < banco.getCantidadRecursos(); i++) {
+			EditText editTextRecurso = new EditText(this);
+			editTextRecurso.setInputType(InputType.TYPE_CLASS_NUMBER);
+			editTextRecurso.setText(banco.getRecursoDisponible(i)+"");
+			rowVectorRecursosDisponibles.addView(editTextRecurso);
+		}
+	}
+	
+	private void actualizarGuiPorCambioModo() {
+		if(modoMatriz) {
+			actualizarModeloEnBaseATablas();
+		}
+		else {
+			actualizarTablasEnBaseAModelo();
+		}
+		modoMatriz = !modoMatriz;
 	}
 
 	private void mensajeUsuario(String mensaje) {
