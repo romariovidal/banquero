@@ -271,6 +271,7 @@ public class IngresoDatosSimulacionActivity extends Activity {
 			rowTituloVectorRecursosDisponibles.addView(nombreRecurso);
 			
 			EditText editTextRecurso = new EditText(this);
+			editTextRecurso.setHeight(20);
 			editTextRecurso.setOnTouchListener(touchListener);
 			editTextRecurso.setInputType(InputType.TYPE_CLASS_NUMBER);
 			editTextRecurso.setText(banco.getRecursoDisponible(i)+"");

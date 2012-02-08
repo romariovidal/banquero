@@ -15,6 +15,12 @@
             android:id="@+id/textViewCantidadProcesos"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:textColor ="#5882FA"
+            android:shadowColor="#5882FA"
+    		android:shadowRadius="2.1"
+			android:shadowDx="0"
+			android:shadowDy="0"
+    		android:textStyle="bold"
             android:text="@string/cantidad_procesos"
             android:textAppearance="?android:attr/textAppearanceLarge" />
 
@@ -25,6 +31,12 @@
             android:layout_alignParentTop="true"
             android:layout_marginLeft="62dp"
             android:layout_toRightOf="@+id/textViewCantidadProcesos"
+            android:textColor ="#5882FA"
+            android:shadowColor="#5882FA"
+    		android:shadowRadius="2.1"
+			android:shadowDx="0"
+			android:shadowDy="0"
+    		android:textStyle="bold"
             android:text="@string/cantidad_recursos"
             android:textAppearance="?android:attr/textAppearanceLarge" />
 
@@ -47,26 +59,42 @@
             android:layout_alignLeft="@+id/textViewCantidadRecursos"
             android:layout_alignRight="@+id/textViewCantidadRecursos"
             android:layout_below="@+id/textViewCantidadRecursos"
+            
             android:inputType="number" />
 
         <Button
             android:id="@+id/buttonAceptarParametrosGenerales"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
             android:layout_below="@+id/editTextCantidadProcesos"
+            android:layout_alignRight="@id/textViewCantidadProcesos"
+            
             android:onClick="onClickAceptarParametrosGenerales"
-            android:text="@string/aceptar_parametros_generales" />
+            android:shadowColor="#000000"
+            android:shadowDx="1.5"
+            android:shadowDy="1.5"
+            android:shadowRadius="2"
+            android:text="@string/aceptar_parametros_generales"
+            android:textColor="#FFFFFF"
+            android:textStyle="bold" />
 
         <Button
             android:id="@+id/buttonFinalizarIngresoDatos"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/buttonAceptarParametrosGenerales"
             android:layout_below="@+id/editTextCantidadRecursos"
-            android:layout_marginLeft="52dp"
+            android:layout_alignRight="@id/editTextCantidadRecursos"
+            android:layout_marginLeft="60dp"
             android:layout_toRightOf="@+id/buttonAceptarParametrosGenerales"
             android:onClick="onClickFinalizarIngresoDatos"
-            android:text="@string/finalizar_ingreso_datos" />
+            android:shadowColor="#000000"
+            android:shadowDx="1.5"
+            android:shadowDy="1.5"
+            android:shadowRadius="2"
+            android:text="@string/finalizar_ingreso_datos"
+            android:textColor="#FFFFFF"
+            android:textStyle="bold" />
 
     </RelativeLayout>
 
@@ -84,18 +112,24 @@
             <TableLayout
                 android:id="@+id/tableLayoutModoIngreso"
                 android:layout_width="match_parent"
-                android:layout_height="448dp"
-                android:layout_weight="0.82" >
+                android:layout_height="448dp" >
 
                 <TableRow
                     android:id="@+id/tableRowTituloIngresoRecursos"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" >
+                    android:layout_height="wrap_content"
+                  >
 
                     <TextView
                         android:id="@+id/textViewTipoRecurso"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:textColor ="#5882FA"
+            			android:shadowColor="#5882FA"
+    					android:shadowRadius="2.1"
+						android:shadowDx="0"
+						android:shadowDy="0"
+    					android:textStyle="bold"
                         android:text="@string/tipo_recurso"
                         android:textAppearance="?android:attr/textAppearanceLarge" />
 
@@ -103,6 +137,12 @@
                         android:id="@+id/textViewSeleccionProceso"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:textColor ="#5882FA"
+            			android:shadowColor="#5882FA"
+    					android:shadowRadius="2.1"
+						android:shadowDx="0"
+						android:shadowDy="0"
+    					android:textStyle="bold"
                         android:text="@string/seleccion_proceso"
                         android:textAppearance="?android:attr/textAppearanceLarge" />
 
@@ -110,6 +150,12 @@
                         android:id="@+id/textViewSeleccionRecursoDisponible"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:textColor ="#5882FA"
+            			android:shadowColor="#5882FA"
+    					android:shadowRadius="2.1"
+						android:shadowDx="0"
+						android:shadowDy="0"
+    					android:textStyle="bold"
                         android:text="@string/seleccione_recursos"
                         android:textAppearance="?android:attr/textAppearanceLarge" />
 
@@ -117,6 +163,12 @@
                         android:id="@+id/textViewRecursosDisponibles"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:textColor ="#5882FA"
+            			android:shadowColor="#5882FA"
+    					android:shadowRadius="2.1"
+						android:shadowDx="0"
+						android:shadowDy="0"
+    					android:textStyle="bold"
                         android:text="@string/cantidad_recursos"
                         android:textAppearance="?android:attr/textAppearanceLarge" />
                 </TableRow>
@@ -124,7 +176,8 @@
                 <TableRow
                     android:id="@+id/tableRowBotonesIngresoRecursos"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" >
+                    android:layout_height="wrap_content"
+                   >
 
                     <RadioGroup
                         android:id="@+id/radioGroupTipoRecurso"
@@ -136,12 +189,24 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:checked="true"
+                            android:textColor="#00FF00"
+    						android:shadowColor ="#00FF00"
+    						android:shadowRadius="2.1"
+							android:shadowDx="0"
+							android:shadowDy="0"
+    						android:textStyle="bold"
                             android:text="@string/recurso_maximo" />
 
                         <RadioButton
                             android:id="@+id/radioButtonAsignado"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:textColor="#00FF00"
+    						android:shadowColor ="#00FF00"
+    						android:shadowRadius="2.1"
+							android:shadowDx="0"
+							android:shadowDy="0"
+    						android:textStyle="bold"
                             android:text="@string/recurso_asignado" />
                     </RadioGroup>
 
@@ -161,32 +226,55 @@
                         android:id="@+id/editTextCantidadRecursosIngreso"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:inputType="number" />
+                        android:inputType="number"
+                    
+                    	/>
 
                     <Button
                         android:id="@+id/buttonSetearRecursoMaximo"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                       
                         android:onClick="onClickSetearRecursoMaximo"
-                        android:text="@string/set_recurso_maximo_proceso" />
+                        android:text="@string/set_recurso_maximo_proceso"
+                        
+            			android:shadowColor="#000000"
+        				android:shadowDx="1.5"
+        				android:shadowDy="1.5"
+       					android:shadowRadius="2"
+       					android:textColor="#FFFFFF"
+       					android:textStyle="bold" android:translationY="40dp" android:translationX="-232dp"/>
                 </TableRow>
 
                 <TableRow
                     android:id="@+id/tableRowTituloIngresoRecursosDisponibles"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" >
+                    android:layout_height="wrap_content"
+                   >
 
                     <TextView
                         android:id="@+id/TextViewCantidadRecursos"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/cantidad_recursos"
+                        android:textColor ="#5882FA"
+            			android:shadowColor="#5882FA"
+    					android:shadowRadius="2.1"
+						android:shadowDx="0"
+						android:shadowDy="0"
+    					android:textStyle="bold"
                         android:textAppearance="?android:attr/textAppearanceLarge" />
 
                     <TextView
                         android:id="@+id/textViewIngresoCantidadRecursosDisponibles"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:textColor ="#5882FA"
+            			android:shadowColor="#5882FA"
+    					android:shadowRadius="2.1"
+						android:shadowDx="0"
+						android:shadowDy="0"
+    					android:textStyle="bold"
                         android:text="@string/ingreso_cantidad_recursos_disponibles"
                         android:textAppearance="?android:attr/textAppearanceLarge" />
                 </TableRow>
@@ -194,7 +282,8 @@
                 <TableRow
                     android:id="@+id/tableRowBotonesIngresoRecursosDisponibles"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" >
+                    android:layout_height="wrap_content"
+                    >
 
                     <Spinner
                         android:id="@+id/spinnerSeleccionRecursosDisponibles"
@@ -206,14 +295,31 @@
                         android:id="@+id/editTextIngresoRecursosDisponibles"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:inputType="number" />
+                        android:inputType="number"
+
+                        android:textColor ="#00FF00"
+            			android:shadowColor="#00FF00"
+    					android:shadowRadius="2.1"
+						android:shadowDx="0"
+						android:shadowDy="0"
+    					android:textStyle="bold"
+                         />
 
                     <Button
                         android:id="@+id/buttonSetearRecursosDisponibles"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:onClick="onClickSetearRecursosDisponibles"
-                        android:text="@string/setear_recurso_disponible" />
+                        android:text="@string/setear_recurso_disponible"
+                        
+                        android:shadowColor="#000000"
+        				android:shadowDx="1.5"
+        				android:shadowDy="1.5"
+       					android:shadowRadius="2"
+       					android:textColor="#FFFFFF"
+       					android:textStyle="bold"
+                       
+                         />
                 </TableRow>
             </TableLayout>
 
@@ -223,7 +329,15 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:onClick="onclickVerMatrices"
-                android:text="@string/cambio_modo_a_ingreso_matrices" />
+                android:text="@string/cambio_modo_a_ingreso_matrices"
+                
+            	android:shadowColor="#000000"
+        		android:shadowDx="1.5"
+        		android:shadowDy="1.5"
+       			android:shadowRadius="2"
+       			android:textColor="#FFFFFF"
+       			android:textStyle="bold"
+                />
 
         </LinearLayout>
         
@@ -231,7 +345,8 @@
             android:id="@+id/LinearLayoutModoTabla"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="vertical" >
+            android:orientation="vertical"
+            >
 
             <LinearLayout
                 android:id="@+id/linearLayoutModoTabla"
@@ -239,13 +354,15 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1.02"
                 android:baselineAligned="false"
+                
                 android:orientation="vertical" >
 
                 <LinearLayout
                     android:id="@+id/LinearLayoutTitulos"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical" >
+                    android:orientation="vertical"
+                    android:gravity="center" >
 
                     <TextView
                         android:id="@+id/textViewModoTablas"
@@ -253,7 +370,15 @@
                         android:layout_height="wrap_content"
                         android:gravity="center"
                         android:text="@string/modo_tablas"
-                        android:textAppearance="?android:attr/textAppearanceLarge" />
+                        android:textAppearance="?android:attr/textAppearanceLarge"
+                        
+                        android:textColor ="#5882FA"
+            			android:shadowColor="#5882FA"
+    					android:shadowRadius="2.1"
+						android:shadowDx="0"
+						android:shadowDy="0"
+    					android:textStyle="italic"
+                         />
 
                     <LinearLayout
                         android:id="@+id/linearLayoutTitulosTablas"
@@ -266,7 +391,14 @@
                             android:layout_height="wrap_content"
                             android:layout_weight="0.50"
                             android:text="@string/matriz_recursos_maximos"
-                            android:textAppearance="?android:attr/textAppearanceLarge" />
+                            android:textAppearance="?android:attr/textAppearanceLarge"
+                            
+                            android:textColor ="#5882FA"
+            				android:shadowColor="#5882FA"
+    						android:shadowRadius="2.1"
+							android:shadowDx="0"
+							android:shadowDy="0"
+    						android:textStyle="bold" />
 
                         <TextView
                             android:id="@+id/textViewTitulomatrizRecursosDisponibles"
@@ -274,7 +406,15 @@
                             android:layout_height="wrap_content"
                             android:layout_weight="0.50"
                             android:text="@string/matriz_recursos_disponibles"
-                            android:textAppearance="?android:attr/textAppearanceLarge" />
+                            android:textAppearance="?android:attr/textAppearanceLarge" 
+                            
+                            android:textColor ="#5882FA"
+            				android:shadowColor="#5882FA"
+    						android:shadowRadius="2.1"
+							android:shadowDx="0"
+							android:shadowDy="0"
+    						android:textStyle="bold"
+                            />
                     </LinearLayout>
                 </LinearLayout>
 
@@ -284,7 +424,8 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="10.05"
                     android:gravity="fill_horizontal"
-                    android:orientation="horizontal" >
+                    android:orientation="horizontal"
+                    >
 
                     <TableLayout
                         android:id="@+id/tableLayoutTablaMaximo"
@@ -307,19 +448,29 @@
                     android:id="@+id/linearLayoutRecursosDisponibles"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_weight="0.63" >
+                    android:layout_weight="0.63"
+                    android:paddingLeft="5dp" >
 
                     <TextView
                         android:id="@+id/textViewTituloRecursosDisponibles"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_height="100dp"
                         android:text="@string/recursos_disponibles"
-                        android:textAppearance="?android:attr/textAppearanceLarge" />
+                        android:textAppearance="?android:attr/textAppearanceLarge"
+                        
+                        android:textColor ="#00FF00"
+            			android:shadowColor="#00FF00"
+    					android:shadowRadius="2.1"
+						android:shadowDx="0"
+						android:shadowDy="0"
+    					android:textStyle="bold"
+                         />
 
                     <TableLayout
                         android:id="@+id/tableLayoutVectorRecursosDisponibles"
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent" >
+                        android:layout_height="match_parent"
+                        android:paddingLeft="18dp" >
 
                          <TableRow
                             android:id="@+id/tableRowTituloVectorRecursosDisponibles"
@@ -340,9 +491,17 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="44dp"
-                android:layout_marginLeft="558dp"
+                android:layout_marginLeft="480dp"
                 android:onClick="onClickVerIngresoDatos"
-                android:text="@string/cambio_a_modo_ingreso_datos" />
+                android:text="@string/cambio_a_modo_ingreso_datos"
+                
+                android:shadowColor="#000000"
+        		android:shadowDx="1.5"
+        		android:shadowDy="1.5"
+       			android:shadowRadius="2"
+       			android:textColor="#FFFFFF"
+       			android:textStyle="bold"
+       			 />
         </LinearLayout>
 
     </ViewSwitcher>
