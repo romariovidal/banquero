@@ -17,6 +17,12 @@
             android:layout_height="wrap_content"
             android:gravity="center"
             android:text="@string/seleccione_una_opcion"
+            android:textColor ="#5882FA"
+            android:shadowColor="#5882FA"
+    		android:shadowRadius="2.1"
+			android:shadowDx="0"
+			android:shadowDy="0"
+    		android:textStyle="bold"
             android:textAppearance="?android:attr/textAppearanceLarge" />
 
         <LinearLayout
@@ -30,14 +36,28 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:onClick="onClickIngresarDatosSimulacion"
-                android:text="@string/ingresar_datos" />
+                android:text="@string/ingresar_datos" 
+                
+                android:shadowColor="#000000"
+        		android:shadowDx="1.5"
+        		android:shadowDy="1.5"
+       			android:shadowRadius="2"
+       			android:textColor="#FFFFFF"
+       			android:textStyle="bold"
+       			/>
 
             <Button
                 android:id="@+id/buttonComenzarSimulacion"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:onClick="onClickComenzarSimulacion"
-                android:text="@string/comenzar_simulacion" />
+                android:text="@string/comenzar_simulacion"
+                android:shadowColor="#000000"
+        		android:shadowDx="1.5"
+        		android:shadowDy="1.5"
+       			android:shadowRadius="2"
+       			android:textColor="#FFFFFF"
+       			android:textStyle="bold" />
 
             <Button
                 android:id="@+id/button_acerca_de"
@@ -45,6 +65,12 @@
                 android:layout_height="wrap_content"
                 android:text="@string/acerca_de" 
                 android:onClick="onClickAcercaDe"
+                android:shadowColor="#000000"
+        		android:shadowDx="1.5"
+        		android:shadowDy="1.5"
+       			android:shadowRadius="2"
+       			android:textColor="#FFFFFF"
+       			android:textStyle="bold"
                 />
         </LinearLayout>
 
