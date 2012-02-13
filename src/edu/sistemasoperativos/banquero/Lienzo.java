@@ -6,10 +6,12 @@ import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.view.View;
+import android.widget.Toast;
 
 //Se encarga de pintar lo que obtiene del banquero    
 class Lienzo extends View {
 		Banco banquero;
+		private Context context;
    	
 
 	       
@@ -20,12 +22,23 @@ class Lienzo extends View {
 		
     public Lienzo(Context context) {
         super(context);
+        this.context = context;
     }
     
     protected void onDraw(Canvas canvas) {
  	   if(banquero == null) {
  		   return;
  	   }
+ 	  String mensaje = "";
+	   for(Cliente c : banquero.getClientes()) {
+		   mensaje +=  "[ P"+c.getIdProceso() +  " ";
+		   for(int i = 0; i < banquero.getCantidadRecursos();i++) {
+			   mensaje += " -- R" + i + " ("+c.getCantidadRecursoObtenido(i)+","+c.getCantidadRecursoNecesario(i)+") -- "; 
+		   }
+		   mensaje += " ] ";
+	   }
+	   		Toast.makeText(context, mensaje, 2000).show();
+	
            canvas.drawRGB(245,245,245); //borrado del lienzo
            int ancho = canvas.getWidth(); //obtiene el ancho del lienzo
            int alto = canvas.getHeight(); //obtiene el alto del lienzo
