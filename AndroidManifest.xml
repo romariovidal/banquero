@@ -21,6 +21,7 @@
         <activity android:name="MatrixActivity" android:label="@string/app_name"></activity>
         <activity android:name="MenuActivity"></activity>
         <activity android:name="IngresoDatosSimulacionActivity"></activity>
+        <activity android:name="GraficoActivity"></activity>
     </application>
 
 </manifest>
