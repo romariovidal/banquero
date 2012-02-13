@@ -41,8 +41,8 @@ public class GraficoActivity extends Activity implements SimulacionListener {
 	private Handler hand = new Handler() {
 		
 		public void handleMessage(Message mes) {
-			Banco banco = (Banco) mes.obj;
-			lienzo.refrescar(banco);
+			Banco banquero = (Banco) mes.obj;
+			lienzo.refrescar(banquero);
 		}
 	};
 

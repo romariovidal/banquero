@@ -74,7 +74,7 @@ public class Banco extends Thread implements Serializable {
 			int cantidadNecesaria = c.getCantidadRecursoNecesario(recurso)
 					- c.getCantidadRecursoObtenido(recurso);
 			c.setCantidadRecursoObtenido(recurso,
-					c.getCantidadRecursoNecesario(recurso) + cantidadNecesaria);
+					c.getCantidadRecursoObtenido(recurso) + cantidadNecesaria);
 			this.setRecursoDisponible(recurso,
 					this.getRecursoDisponible(recurso) - cantidadNecesaria);
 		}
