@@ -8,7 +8,7 @@ import android.os.Message;
 import android.view.View;
 import android.widget.Toast;
 
-public class MenuActivity extends Activity implements SimulacionListener {
+public class MenuActivity extends Activity {
 	
 	private Banco banco = null;
 	
@@ -23,8 +23,12 @@ public class MenuActivity extends Activity implements SimulacionListener {
 			Toast.makeText(this, "Debe Ingresar primero los datos de la simulacion", 2500).show();
 			return;
 		}
-		banco.setSimulacionListener(this);
-		banco.start();
+		
+		int requestCode = 0;
+		Intent intent = new Intent(this,GraficoActivity.class);
+		intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+		intent.putExtra("banco", banco);
+		startActivityForResult(intent, requestCode);
 	}
 	
 	public void onClickAcercaDe(View v) {
@@ -50,49 +54,6 @@ public class MenuActivity extends Activity implements SimulacionListener {
         }
     }
 	
-	private MenuActivity yo = null;
 	
-	private Handler hand = new Handler() {
-		
-		public void handleMessage(Message mes) {
-
-			Toast.makeText(yo,mes.obj.toString(),2500).show();
-			
-		}
-	};
-
-	public void pasoSimulacion(Banco banco) {
-		yo = this;
-		String mensaje = "";
-		for(Cliente c : banco.getClientes()) {
-			mensaje += "P"+c.getIdProceso() + " ESTADO ";
-			switch(c.getEstado()) {
-			
-			case Cliente.ESTADO_ACTIVO:
-				mensaje+= "Activo. ";
-				break;
-			case Cliente.ESTADO_ESPERA:
-				mensaje+= "Espera. ";
-				break;
-			case Cliente.ESTADO_SIN_INICIALIZAR:
-				mensaje+= "Sin iniciar. ";
-				break;
-			case Cliente.ESTADO_TERMINADO:
-				mensaje+= "Terminado. ";
-				break;
-			}
-		}
-
-		Message msg = new Message();
-		msg.obj = mensaje;
-		hand.sendMessage(msg);
-	}
-
-	public void terminoSimulacion(Banco banco) {
-		Message msg = new Message();
-		msg.obj = "Simulacion Terminada";
-		hand.sendMessage(msg);
-		banco = null;
-	}
 
 }
