@@ -86,7 +86,8 @@ class Lienzo extends View {
        }
        
        public void SetColor(Paint pincel, int color){
-    	  switch(color){
+    	   int selector = color%10; 
+     	   switch(selector){
     	   	case 0: pincel.setARGB(255, 0, 0, 0);
     	   	break;	
     	   
