@@ -23,7 +23,7 @@ public class GraficoActivity extends Activity implements SimulacionListener {
         setContentView(R.layout.main);
         
         LinearLayout linearLayout = (LinearLayout)findViewById(R.id.linearLayout1);
-       // Lienzo fondo=new Lienzo(this, Banco);        
+        Lienzo fondo=new Lienzo(this);        
        // linearLayout.addView(fondo);
     }
     
