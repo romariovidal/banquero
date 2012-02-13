@@ -90,9 +90,10 @@ class Lienzo extends View {
         	   for(int j=0;j<cantidadRecursos;j++){
 	           	   int necesarios = cli.getCantidadRecursoNecesario(j);
 	        	   int obtenidos = cli.getCantidadRecursoObtenido(j);
-	        	   int altopintar = altoRecurso*obtenidos/necesarios;
+	        	   int altopintar = 0;
 	        	   
-	        	   System.out.println("i:"+i+" j:"+j+" nec:"+necesarios+" obt:"+obtenidos+" alt:"+altopintar);
+	        	   if(necesarios != 0)
+	        		   altopintar = altoRecurso*obtenidos/necesarios;
 	        	   
 	        	   SetColor(pincel1,i);
 	        	   canvas.drawRect(xActual,yActual-altopintar,xActual+30,yActual,pincel1);
