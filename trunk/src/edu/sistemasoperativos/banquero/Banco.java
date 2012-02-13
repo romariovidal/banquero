@@ -21,7 +21,7 @@ public class Banco extends Thread implements Serializable {
 		boolean faltaRecursos = false;
 		while (enEjecucion & !faltaRecursos) {
 			try {
-				Thread.sleep(1000);
+				Thread.sleep(3000);
 			} catch (InterruptedException e) {}
 
 			faltaRecursos = true;// verificaremos esto
