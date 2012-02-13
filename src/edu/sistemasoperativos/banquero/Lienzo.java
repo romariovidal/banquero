@@ -36,9 +36,9 @@ class Lienzo extends View {
            int yActual = 10;
            for(int i=0; i<clientes.length;i++){
         	  SetColor(pincel1,i);
-        	  canvas.drawRect(ancho-100, yActual, ancho-50, yActual+10, pincel1); //rectangulo por vertices
-        	  canvas.drawText("Cliente"+i,ancho-90, yActual+20, pincel1); //txt en ubicacion x,y
-        	  yActual+=25;
+        	  canvas.drawRect(ancho-100, yActual, ancho-50, yActual+20, pincel1); //rectangulo por vertices
+        	  canvas.drawText("Cliente "+i,ancho-90, yActual+30, pincel1); //txt en ubicacion x,y
+        	  yActual+=40;
            }
            
            //pinta las divisiones para cada recurso
@@ -46,7 +46,7 @@ class Lienzo extends View {
            for(int i=0; i < cantidadRecursos;i++){
         	   int y = altoRecurso*i;
         	   canvas.drawLine(0, y, ancho-100, y, pincel1); //dibuja una linea xi,yi,xf,yf
-        	   canvas.drawText("Recurso"+i,10, y+(altoRecurso/2), pincel1);
+        	   canvas.drawText("Recurso "+i,10, y+(altoRecurso/2), pincel1);
            }
            
            //pinta las barras de lo necesario de cada cliente
