@@ -92,7 +92,7 @@ class Lienzo extends View {
 	        	   int obtenidos = cli.getCantidadRecursoObtenido(j);
 	        	   int altopintar = 0;
 	        	   
-	        	   if(necesarios != 0)
+	        	   if(necesarios != 0) 
 	        		   altopintar = altoRecurso*obtenidos/necesarios;
 	        	   
 	        	   SetColor(pincel1,i);
