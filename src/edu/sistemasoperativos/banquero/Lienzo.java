@@ -11,15 +11,21 @@ import android.view.View;
 class Lienzo extends View {
 		Banco banquero;
    	
-       public Lienzo(Context context) {
-    	   super(context);
-       }
-       
-       public void refrescar(Banco banco){
-    	   banquero=banco;
-       }
-       
-       protected void  onDraw(Canvas canvas) {
+
+	       
+	public void refrescar(Banco banco){
+		banquero=banco;
+		this.invalidate();
+	}
+		
+    public Lienzo(Context context) {
+        super(context);
+    }
+    
+    protected void onDraw(Canvas canvas) {
+ 	   if(banquero == null) {
+ 		   return;
+ 	   }
            canvas.drawRGB(245,245,245); //borrado del lienzo
            int ancho = canvas.getWidth(); //obtiene el ancho del lienzo
            int alto = canvas.getHeight(); //obtiene el alto del lienzo
