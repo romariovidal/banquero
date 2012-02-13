@@ -9,14 +9,17 @@ import android.view.View;
 
 //Se encarga de pintar lo que obtiene del banquero    
 class Lienzo extends View {
-   	Banco banquero;
+		Banco banquero;
    	
-       public Lienzo(Context context, Banco banq) {
-           super(context);
-           banquero = banq;
+       public Lienzo(Context context) {
+    	   super(context);
        }
        
-       protected void onDraw(Canvas canvas) {
+       public void refrescar(Banco banco){
+    	   banquero=banco;
+       }
+       
+       protected void  onDraw(Canvas canvas) {
            canvas.drawRGB(245,245,245); //borrado del lienzo
            int ancho = canvas.getWidth(); //obtiene el ancho del lienzo
            int alto = canvas.getHeight(); //obtiene el alto del lienzo
