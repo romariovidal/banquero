@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.view.ViewGroup.LayoutParams;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
@@ -16,25 +17,24 @@ public class GraficoActivity extends Activity implements SimulacionListener {
 	// No borre esto, es necesario para el handler.
     private GraficoActivity yo = null;
     private Lienzo lienzo = null;
+	private Banco banco = null;
 	
     @Override
     public void onCreate(Bundle savedInstanceState) {
     	super.onCreate(savedInstanceState);
-        setContentView(R.layout.main);
+    	banco = (Banco) this.getIntent().getExtras().get("banco");
+    	banco.setSimulacionListener(this);
         
-        LinearLayout linearLayout = (LinearLayout)findViewById(R.id.linearLayout1);
-        Lienzo fondo=new Lienzo(this);        
-       // linearLayout.addView(fondo);
-    }
-    
-    @Override
-    public void startActivityForResult(Intent intent, int requestCode) {
-    	super.startActivityForResult(intent, requestCode);
-        Banco banco = (Banco)intent.getExtras().get("banco");
-        banco.setSimulacionListener(this);
-        banco.start();
+        LinearLayout linearLayout = new LinearLayout(this);
+        setContentView(linearLayout);     
+        lienzo = new Lienzo(this);
+       linearLayout.addView(lienzo,LayoutParams.WRAP_CONTENT , LayoutParams.FILL_PARENT);
     }
 
+    public void onResume() {
+    	super.onResume();
+    	banco.start();
+    }
 
     
 	
@@ -49,7 +49,6 @@ public class GraficoActivity extends Activity implements SimulacionListener {
 	public void pasoSimulacion(Banco banco) {
 		//No borre esto, es necesario para el handler.
 		yo = this;
-
 		Message msg = new Message();
 		msg.obj = banco;
 		hand.sendMessage(msg);
